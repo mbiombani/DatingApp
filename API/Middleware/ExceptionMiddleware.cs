@@ -19,6 +19,7 @@ using Microsoft.Extensions.Logging;
 
 namespace API.Middleware
 
+
 {
 
     public class ExceptionMiddleware
@@ -56,6 +57,7 @@ namespace API.Middleware
 
             {
 
+
                 await _next(context);
 
             }
@@ -63,6 +65,7 @@ namespace API.Middleware
             catch (Exception ex)
 
             {
+                
 
                 _logger.LogError(ex, ex.Message);
 
@@ -74,6 +77,8 @@ namespace API.Middleware
 
 
                 var response = _env.IsDevelopment()
+
+
 
                     ? new ApiException(context.Response.StatusCode, ex.Message, ex.StackTrace?.ToString())
 
@@ -99,5 +104,4 @@ namespace API.Middleware
         }
 
     }
-
-} 
+}
